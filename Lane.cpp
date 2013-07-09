@@ -20,8 +20,8 @@ void Lane::addVehicle(Vehicle* vehicle)
 }
 void Lane::removeVehicle(Vehicle* vehicle)
 {
-     auto iter = std::find(m_vehicles.begin(), m_vehicles.end(), vehicle);
-     m_vehicles.erase(iter);
+     
+     m_vehicles.erase(std::remove(m_vehicles.begin(), m_vehicles.end(), vehicle), m_vehicles.end());
 }
 
  Vehicle* Lane::getVehicle(int id) const
@@ -36,9 +36,13 @@ void Lane::removeVehicle(Vehicle* vehicle)
     }
 void Lane::update()
 {
+    
     for (Vehicle* vehicle:m_vehicles)
     {
-        vehicle->update();
+        if (vehicle != nullptr)
+        {
+          vehicle->update();
+        }
     }
 }
 bool Lane::isEndOfLane(int position) const
@@ -47,17 +51,15 @@ bool Lane::isEndOfLane(int position) const
 }
 void Lane::laneEndReached(Vehicle* vehicle)
 {
-    //For now: reset position 
     std::cout << "Lane end: " << vehicle->getId() << std::endl;
-    vehicle->resetPosition();
-    //removeVehicle(vehicle);
+    removeVehicle(vehicle);
     
 }
 Lane::~Lane()
 {
     for (Vehicle* vehicle:m_vehicles)
     {
-     delete vehicle;
+        delete vehicle;
     }
 }
 
