@@ -1,3 +1,7 @@
+# NB folders
+build
+dist
+
 # Compiled Object files
 *.slo
 *.lo
