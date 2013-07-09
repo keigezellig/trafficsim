@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=TrafficSim
+PROJECTNAME=trafficsim
 
 # Active Configuration
 DEFAULTCONF=Debug

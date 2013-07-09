@@ -40,7 +40,7 @@ int main(int argc, char** argv)
             }
             else if (key == '+')
             {
-                lane1->getVehicle(1)->setSpeed(80000);
+                lane1->getVehicle(1)->increaseSpeed(5000);
             }
 
             lane1->update();

@@ -18,7 +18,7 @@ public:
     int getSpeed() const;
     int getPosition() const;
     
-    void setSpeed(int newSpeed);
+    void increaseSpeed(int delta);
     void resetPosition();
     void update();
     virtual int getMaxSpeed() const = 0;

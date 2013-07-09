@@ -27,9 +27,11 @@ Vehicle::Vehicle(int id, int initialSpeed, Lane* lane)
     {
         return m_id;
     }
-    void Vehicle::setSpeed(int newSpeed)
+    void Vehicle::increaseSpeed(int delta)
     {
-        std::cout << "Setting new speed to: " << newSpeed << std::endl;
+        int newSpeed = m_speed + delta;
+        
+        
         if (newSpeed > getMaxSpeed())
         {
             m_speed = getMaxSpeed();
@@ -38,6 +40,8 @@ Vehicle::Vehicle(int id, int initialSpeed, Lane* lane)
         {
             m_speed = newSpeed;
         }
+        
+        std::cout << "Set new speed to: " << m_speed << std::endl;
     }
     
     void Vehicle::resetPosition()
