@@ -13,6 +13,8 @@
 class Lane {
 public:
     explicit Lane(int length);
+    Lane();
+    Lane(const Lane& orig);
     void addVehicle(Vehicle* vehicle);
     void removeVehicle(Vehicle* vehicle);
     Vehicle* getVehicle(int id) const;

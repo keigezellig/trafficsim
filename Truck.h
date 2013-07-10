@@ -11,7 +11,7 @@
 #include "Vehicle.h"
 class Truck  : public Vehicle {
 public:
-    explicit Truck(int id, int initialSpeed,  Lane* lane);
+    explicit Truck(int id, int initialSpeed);
     virtual int getMaxSpeed() const;
     virtual std::string getTypeDescription() const;
     virtual ~Truck();

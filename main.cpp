@@ -9,6 +9,7 @@
 #include "Lane.h"
 #include "Car.h"
 #include "Truck.h"
+#include "RoadPart.h"
 
 
 using namespace std;
@@ -20,38 +21,40 @@ int main(int argc, char** argv)
 {
     
     int time = 0;
-    Lane* lane1 = new Lane(1000000);
-    lane1->addVehicle(new Car(1, 50000,lane1));
-    lane1->addVehicle(new Truck(2, 30000,lane1));
-    lane1->addVehicle(new Car(3, 50000,lane1));
+    RoadPart* part1 = new RoadPart(4,1000000);
+    part1->addVehicle(new Car(1,50000),0);
+    part1->addVehicle(new Truck(2, 30000),0);
+    part1->addVehicle(new Car(3, 80000),0);
+     part1->addVehicle(new Truck(4,50000),1);
+    part1->addVehicle(new Truck(5, 90000),1);
+    part1->addVehicle(new Car(6, 130000),1);
     
-    std::cout << "Time = " << time << std::endl << *lane1;
+    
+    
+    
+    
+    //std::cout << "Time = " << time << std::endl << part1;
     
     while (true)
     {
        
         char key = getchar();
-        if (key != '\n')
-        {
+        
 
             if (key == 'n')
             {
                 break;
             }
-            else if (key == '+')
-            {
-                lane1->getVehicle(1)->increaseSpeed(5000);
-            }
+           
 
-            lane1->update();
+            part1->update();
             time++; 
             
-             std::cout << "Time = " << time << std::endl << "********************" << std::endl << *lane1 << std::endl << "*********************" << std::endl;
+             std::cout << "Time = " << time << std::endl << "********************" << std::endl << *part1 << std::endl << "*********************" << std::endl;
 
-        }
     }
     
-    delete lane1;
+    delete part1;
     return 0;
 }
 

@@ -7,8 +7,8 @@
 
 #include "Truck.h"
 
-    Truck::Truck(int id, int initialSpeed, Lane* lane)
-      :Vehicle(id, initialSpeed, lane)
+    Truck::Truck(int id, int initialSpeed)
+      :Vehicle(id, initialSpeed)
     {
         
     }

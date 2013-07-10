@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Car.o \
 	${OBJECTDIR}/Lane.o \
+	${OBJECTDIR}/RoadPart.o \
 	${OBJECTDIR}/Truck.o \
 	${OBJECTDIR}/Vehicle.o \
 	${OBJECTDIR}/main.o
@@ -75,6 +76,11 @@ ${OBJECTDIR}/Lane.o: Lane.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Lane.o Lane.cpp
+
+${OBJECTDIR}/RoadPart.o: RoadPart.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/RoadPart.o RoadPart.cpp
 
 ${OBJECTDIR}/Truck.o: Truck.cpp 
 	${MKDIR} -p ${OBJECTDIR}

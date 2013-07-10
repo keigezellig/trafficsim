@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>Car.h</itemPath>
       <itemPath>Lane.h</itemPath>
+      <itemPath>RoadPart.h</itemPath>
       <itemPath>Truck.h</itemPath>
       <itemPath>Vehicle.h</itemPath>
     </logicalFolder>
@@ -18,6 +19,7 @@
                    projectFiles="true">
       <itemPath>Car.cpp</itemPath>
       <itemPath>Lane.cpp</itemPath>
+      <itemPath>RoadPart.cpp</itemPath>
       <itemPath>Truck.cpp</itemPath>
       <itemPath>Vehicle.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -55,6 +57,10 @@
       <item path="Lane.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Lane.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RoadPart.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadPart.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Truck.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -95,6 +101,10 @@
       <item path="Lane.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Lane.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RoadPart.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadPart.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Truck.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -14,12 +14,15 @@ class Lane;
 
 class Vehicle {
 public:
-    explicit Vehicle(int id, int initialSpeed, Lane* lane);
+    explicit Vehicle(int id, int initialSpeed);
     int getSpeed() const;
     int getPosition() const;
     
+
     void increaseSpeed(int delta);
+    void decreaseSpeed(int delta);
     void resetPosition();
+    void setLane(Lane* lane);
     void update();
     virtual int getMaxSpeed() const = 0;
     int getId() const;

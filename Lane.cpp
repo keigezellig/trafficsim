@@ -14,14 +14,29 @@ Lane::Lane(int length)
 {
     
 }
+
+Lane::Lane(const Lane& orig)
+{
+    
+}
+
+Lane::Lane()
+  :m_maxSpeed(0), m_length(0)
+{
+    
+}
 void Lane::addVehicle(Vehicle* vehicle)
 {
+    vehicle->setLane(this);
     m_vehicles.push_back(vehicle);
+    
 }
 void Lane::removeVehicle(Vehicle* vehicle)
 {
      
      m_vehicles.erase(std::remove(m_vehicles.begin(), m_vehicles.end(), vehicle), m_vehicles.end());
+     vehicle->setLane(nullptr);
+     delete vehicle;
 }
 
  Vehicle* Lane::getVehicle(int id) const
@@ -57,6 +72,7 @@ void Lane::laneEndReached(Vehicle* vehicle)
 }
 Lane::~Lane()
 {
+    std::cout << "Deleting lane..."<< std::endl;
     for (Vehicle* vehicle:m_vehicles)
     {
         delete vehicle;

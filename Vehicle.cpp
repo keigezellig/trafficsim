@@ -8,8 +8,8 @@
 #include "Vehicle.h"
 #include "Lane.h"
 
-Vehicle::Vehicle(int id, int initialSpeed, Lane* lane)
-     :m_id(id), m_position(0), m_speed(initialSpeed), m_lane(lane)
+Vehicle::Vehicle(int id, int initialSpeed)
+     :m_id(id), m_position(0), m_speed(initialSpeed)
 {
     
 }
@@ -41,12 +41,33 @@ Vehicle::Vehicle(int id, int initialSpeed, Lane* lane)
             m_speed = newSpeed;
         }
         
-        std::cout << "Set new speed to: " << m_speed << std::endl;
+        std::cout << "Increasing speed  to: " << m_speed << std::endl;
+    }
+    
+    void Vehicle::decreaseSpeed(int delta)
+    {
+        int newSpeed = m_speed - delta;
+        
+        if (newSpeed < 0)
+        {
+            m_speed = 0;
+        }
+        else
+        {
+            m_speed = newSpeed;
+        }
+        
+        std::cout << "Decreasing speed to: " << m_speed << std::endl;
     }
     
     void Vehicle::resetPosition()
     {
         m_position = 0;
+    }
+    
+    void Vehicle::setLane(Lane* lane)
+    {
+        m_lane = lane;
     }
 
     void Vehicle::update()
@@ -65,7 +86,7 @@ Vehicle::Vehicle(int id, int initialSpeed, Lane* lane)
 
 Vehicle::~Vehicle() 
 {
-    
+    std::cout << "Deleting vehicle..." << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle)

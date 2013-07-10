@@ -9,8 +9,8 @@
 
 
 
-    Car::Car(int id, int initialSpeed,  Lane* lane)
-      :Vehicle(id, initialSpeed, lane)
+    Car::Car(int id, int initialSpeed)
+      :Vehicle(id, initialSpeed)
     {
         
     }
