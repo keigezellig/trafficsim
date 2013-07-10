@@ -9,8 +9,8 @@
 
 
 
-    Car::Car(int id, int initialSpeed)
-      :Vehicle(id, initialSpeed)
+    Car::Car(int id, int initialSpeed, int initialPosition)
+      :Vehicle(id, initialSpeed, initialPosition)
     {
         std::cout << "Ctor Car" << std::endl;
     }
@@ -28,7 +28,7 @@
     }
     int Car::getMaxSpeed() const
     {
-        return 130000;
+        return 130;
     }
     
     std::string Car::getTypeDescription() const

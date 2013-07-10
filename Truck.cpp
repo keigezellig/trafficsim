@@ -8,8 +8,8 @@
 #include "Truck.h"
 #include <iostream>
 
-    Truck::Truck(int id, int initialSpeed)
-      :Vehicle(id, initialSpeed)
+    Truck::Truck(int id, int initialSpeed, int initialPosition)
+      :Vehicle(id, initialSpeed, initialPosition)
     {
         std::cout << "Ctor Truck" << std::endl;
     }
@@ -27,7 +27,7 @@
     
     int Truck::getMaxSpeed() const
     {
-        return 80000;
+        return 80;
     }
     
     std::string Truck::getTypeDescription() const

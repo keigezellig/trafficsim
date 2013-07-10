@@ -30,12 +30,13 @@ int RoadPart::getNumberOfLanes() const
 {
     return m_numberOfLanes;
 }
-void RoadPart::addVehicle(Vehicle* vehicle, int laneIndex)
+void RoadPart::addVehicle(int id, VehicleType type, int initialSpeed, int initialPosition, int laneIndex)
 {
     if (laneIndex >= 0 && laneIndex < m_numberOfLanes )
     {   
         Lane* lane = m_lanes[laneIndex];
-        lane->addVehicle(vehicle);
+        Vehicle* veh = Vehicle::createVehicle(id,type,initialSpeed,initialPosition);
+        lane->addVehicle(veh);
     }
     
 }

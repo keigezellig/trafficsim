@@ -7,10 +7,29 @@
 
 #include "Vehicle.h"
 #include "Lane.h"
+#include "Car.h"
+#include "Truck.h"
 
-Vehicle::Vehicle(int id, int initialSpeed)
-     :m_id(id), m_position(0), m_speed(initialSpeed)
+Vehicle* Vehicle::createVehicle(int id, VehicleType type, int initialSpeed, int initialPosition)
 {
+    switch (type)
+    {
+        case VehicleType::CAR:
+        {
+            return new Car(id,initialSpeed,initialPosition);
+            break;
+        }
+        case VehicleType::TRUCK:
+        {
+            return new Truck(id, initialSpeed, initialPosition);
+        }
+    }
+}
+    
+Vehicle::Vehicle(int id, int initialSpeed, int initialPosition)
+     :m_id(id), m_position(initialPosition),m_speed(initialSpeed)
+{
+    
     std::cout << "Ctor Vehicle" << std::endl;
 }
 
@@ -18,6 +37,7 @@ Vehicle::Vehicle(const Vehicle& vehicle)
       :m_id(vehicle.m_id), m_position(vehicle.m_position), m_speed(vehicle.m_speed)
 {
     std::cout << "Copy ctor Vehicle" << std::endl;
+    
 }
     int Vehicle::getSpeed() const
     {
@@ -34,11 +54,9 @@ Vehicle::Vehicle(const Vehicle& vehicle)
     {
         return m_id;
     }
-    void Vehicle::increaseSpeed(int delta)
+    
+    void Vehicle::setSpeed(int newSpeed)
     {
-        int newSpeed = m_speed + delta;
-        
-        
         if (newSpeed > getMaxSpeed())
         {
             m_speed = getMaxSpeed();
@@ -47,6 +65,13 @@ Vehicle::Vehicle(const Vehicle& vehicle)
         {
             m_speed = newSpeed;
         }
+    }
+    void Vehicle::increaseSpeed(int delta)
+    {
+        int newSpeed = m_speed + delta;
+        setSpeed(newSpeed);
+        
+        
         
         std::cout << "Increasing speed  to: " << m_speed << std::endl;
     }
@@ -76,16 +101,12 @@ Vehicle::Vehicle(const Vehicle& vehicle)
     {
         m_lane = lane;
     }
-
+    
+   
     void Vehicle::update()
     {
-        std::cout << "Updating vehicle.." << std::endl;
+        std::cout << "Updating vehicle " << m_id << std::endl;
         m_position += m_speed;
-        if (m_lane->isEndOfLane(m_position))
-        {
-            m_lane->laneEndReached(this);
-        }
-        
     }
     
     
@@ -93,7 +114,7 @@ Vehicle::Vehicle(const Vehicle& vehicle)
 
 Vehicle::~Vehicle() 
 {
-    std::cout << "Deleting vehicle..." << std::endl;
+    std::cout << "Deleting vehicle " << m_id << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle)

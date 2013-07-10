@@ -10,12 +10,17 @@
 #include <iostream>
 #include <string>
 
+enum class VehicleType {CAR, TRUCK};
+
 class Lane;
+
 
 class Vehicle {
 public:
-    Vehicle(int id, int initialSpeed);
-    Vehicle(const Vehicle& vehicle);
+    
+    static Vehicle* createVehicle(int id, VehicleType type, int initialSpeed, int initialPosition = 0);
+    
+   
     
     int getSpeed() const;
     int getPosition() const;
@@ -25,6 +30,7 @@ public:
     void decreaseSpeed(int delta);
     void resetPosition();
     void setLane(Lane* lane);
+    void setSpeed(int newSpeed);
     void update();
     virtual int getMaxSpeed() const = 0;
     int getId() const;
@@ -33,11 +39,16 @@ public:
     virtual Vehicle* clone() const = 0;
     virtual ~Vehicle();
     friend std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle); 
+protected:
+    Vehicle(int id, int initialSpeed, int initialPosition = 0);
+    Vehicle(const Vehicle& vehicle);
 private:
+   
     int m_id;
     int m_speed;
     int m_position;
-    Lane* m_lane;
+    const Lane* m_lane;
+    
     
 
 };

@@ -18,7 +18,7 @@ public:
     explicit RoadPart(int numberOfLanes, int laneLength);
     RoadPart(const RoadPart& orig);
     int getNumberOfLanes() const;
-    void addVehicle(Vehicle* vehicle, int laneIndex);
+    void addVehicle(int id, VehicleType type, int initialSpeed, int initialPosition, int laneIndex);
     void update();
     
     virtual ~RoadPart();

@@ -8,6 +8,7 @@
 #ifndef LANE_H
 #define	LANE_H
 
+#include <list>
 #include <vector>
 #include "Vehicle.h"
 class Lane {
@@ -20,13 +21,13 @@ public:
     Vehicle* getVehicle(int id) const;
     void update();
     bool isEndOfLane(int position) const;
-    void laneEndReached(Vehicle* vehicle);
     virtual ~Lane();
     friend std::ostream& operator<<(std::ostream& os, const Lane& lane);
 private:
-    std::vector<Vehicle*> m_vehicles;
+    std::list<Vehicle*> m_vehicles;
     int m_maxSpeed;
     int m_length;
+    
     
 
 };
