@@ -18,7 +18,7 @@ RoadPart::RoadPart(int numberOfLanes, int laneLength)
     }
 }
 RoadPart::RoadPart(const RoadPart& orig)
-        :RoadPart::RoadPart(orig.m_numberOfLanes, orig.m_lanes.size())
+        :m_numberOfLanes(orig.m_numberOfLanes)
 {
     for(Lane* orig_lane: orig.m_lanes)
     {

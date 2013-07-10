@@ -11,7 +11,9 @@
 #include "Vehicle.h"
 class Car  : public Vehicle {
 public:
-    explicit Car(int id, int initialSpeed);
+    Car(int id, int initialSpeed);
+    Car(const Car& car);
+    Car* clone() const;
     virtual int getMaxSpeed() const;
     virtual std::string getTypeDescription() const;
     virtual ~Car();

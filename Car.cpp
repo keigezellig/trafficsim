@@ -12,7 +12,19 @@
     Car::Car(int id, int initialSpeed)
       :Vehicle(id, initialSpeed)
     {
-        
+        std::cout << "Ctor Car" << std::endl;
+    }
+    
+   Car::Car(const Car& car)
+      :Vehicle(car)
+   {
+       std::cout << "Copy Ctor Car" << std::endl;
+   }
+    
+    Car* Car::clone() const
+    {
+        std::cout << "Cloning Car" << std::endl;
+        return new Car(*this);
     }
     int Car::getMaxSpeed() const
     {

@@ -14,7 +14,9 @@ class Lane;
 
 class Vehicle {
 public:
-    explicit Vehicle(int id, int initialSpeed);
+    Vehicle(int id, int initialSpeed);
+    Vehicle(const Vehicle& vehicle);
+    
     int getSpeed() const;
     int getPosition() const;
     
@@ -27,7 +29,8 @@ public:
     virtual int getMaxSpeed() const = 0;
     int getId() const;
     virtual std::string getTypeDescription() const = 0;
-    
+ 
+    virtual Vehicle* clone() const = 0;
     virtual ~Vehicle();
     friend std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle); 
 private:

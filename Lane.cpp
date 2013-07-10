@@ -12,12 +12,18 @@
 Lane::Lane(int length)
   :m_maxSpeed(0), m_length(length)
 {
-    
+    std::cout << "Ctor Lane" << std::endl;
 }
 
 Lane::Lane(const Lane& orig)
+  :m_maxSpeed(orig.m_maxSpeed), m_length(orig.m_length)
 {
-    
+    std::cout << "Copy Ctor Lane" << std::endl;
+    for(Vehicle* orig_vehicle: orig.m_vehicles)
+    {
+        Vehicle* newVehicle = orig_vehicle->clone();
+        addVehicle(newVehicle);
+    }
 }
 
 Lane::Lane()

@@ -11,7 +11,13 @@
 Vehicle::Vehicle(int id, int initialSpeed)
      :m_id(id), m_position(0), m_speed(initialSpeed)
 {
-    
+    std::cout << "Ctor Vehicle" << std::endl;
+}
+
+Vehicle::Vehicle(const Vehicle& vehicle)
+      :m_id(vehicle.m_id), m_position(vehicle.m_position), m_speed(vehicle.m_speed)
+{
+    std::cout << "Copy ctor Vehicle" << std::endl;
 }
     int Vehicle::getSpeed() const
     {
@@ -21,6 +27,7 @@ Vehicle::Vehicle(int id, int initialSpeed)
     {
         return m_position;
     }
+    
     
    
     int Vehicle::getId() const
