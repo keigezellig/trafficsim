@@ -70,32 +70,32 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/trafficsim: ${OBJECTFILES}
 ${OBJECTDIR}/Car.o: Car.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Car.o Car.cpp
+	$(COMPILE.cc) -g -I../../boost_1_54_0 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Car.o Car.cpp
 
 ${OBJECTDIR}/Lane.o: Lane.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Lane.o Lane.cpp
+	$(COMPILE.cc) -g -I../../boost_1_54_0 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Lane.o Lane.cpp
 
 ${OBJECTDIR}/RoadPart.o: RoadPart.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/RoadPart.o RoadPart.cpp
+	$(COMPILE.cc) -g -I../../boost_1_54_0 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/RoadPart.o RoadPart.cpp
 
 ${OBJECTDIR}/Truck.o: Truck.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Truck.o Truck.cpp
+	$(COMPILE.cc) -g -I../../boost_1_54_0 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Truck.o Truck.cpp
 
 ${OBJECTDIR}/Vehicle.o: Vehicle.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Vehicle.o Vehicle.cpp
+	$(COMPILE.cc) -g -I../../boost_1_54_0 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Vehicle.o Vehicle.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I../../boost_1_54_0 -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

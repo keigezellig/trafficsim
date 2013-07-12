@@ -48,6 +48,9 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
+          <incDir>
+            <pElem>../../boost_1_54_0</pElem>
+          </incDir>
         </ccTool>
       </compileType>
       <item path="Car.cpp" ex="false" tool="1" flavor2="0">

@@ -11,43 +11,55 @@
 #include <string>
 
 enum class VehicleType {CAR, TRUCK};
+enum class PositionStatus {OK, ROAD_END, POSITION_OCCUPIED};
 
-class Lane;
 
+struct Position
+{
+    int m_x;       //Horizontal position in meters
+    int m_y;       //Lane number 
+    
+    Position(int x, int y)
+    {
+        m_x = x;
+        m_y = y;
+    }
+    
+   std::ostream& operator<<(std::ostream& os, const Position& pos)
+{
+    os << "(" << pos.m_x << "," << pos.m_y << ")" << std::endl;
+    return os;
+}
+    
+};
 
 class Vehicle {
 public:
     
     static Vehicle* createVehicle(int id, VehicleType type, int initialSpeed, int initialPosition = 0);
     
-   
-    
     int getSpeed() const;
     int getPosition() const;
-    
-
+    int getId() const;
     void increaseSpeed(int delta);
     void decreaseSpeed(int delta);
-    void resetPosition();
-    void setLane(Lane* lane);
-    void setSpeed(int newSpeed);
     void update();
-    virtual int getMaxSpeed() const = 0;
-    int getId() const;
-    virtual std::string getTypeDescription() const = 0;
- 
-    virtual Vehicle* clone() const = 0;
     virtual ~Vehicle();
-    friend std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle); 
+    friend std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle);
+    
 protected:
-    Vehicle(int id, int initialSpeed, int initialPosition = 0);
-    Vehicle(const Vehicle& vehicle);
+    Vehicle();
+    Vehicle(int id, int initialSpeed);
+    virtual Position calculateNewPosition() const;
+    virtual void onPositionNotAvailable(const Position& position, const PositionStatus& status);
+    
 private:
-   
     int m_id;
     int m_speed;
-    int m_position;
-    const Lane* m_lane;
+    int m_maxSpeed;
+    Position m_position;
+    PositionStatus isPositionAvailable(const Position& position) const;
+    
     
     
 

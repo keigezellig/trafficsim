@@ -25,101 +25,98 @@ Vehicle* Vehicle::createVehicle(int id, VehicleType type, int initialSpeed, int 
         }
     }
 }
-    
-Vehicle::Vehicle(int id, int initialSpeed, int initialPosition)
-     :m_id(id), m_position(initialPosition),m_speed(initialSpeed)
-{
-    
-    std::cout << "Ctor Vehicle" << std::endl;
-}
 
-Vehicle::Vehicle(const Vehicle& vehicle)
-      :m_id(vehicle.m_id), m_position(vehicle.m_position), m_speed(vehicle.m_speed)
+Vehicle::Vehicle()
+  :m_id(0), m_position(), m_speed(0), m_maxSpeed(0)
 {
-    std::cout << "Copy ctor Vehicle" << std::endl;
     
 }
-    int Vehicle::getSpeed() const
-    {
-        return m_speed;
-    }
-    int Vehicle::getPosition() const
-    {
-        return m_position;
-    }
-    
-    
-   
-    int Vehicle::getId() const
-    {
-        return m_id;
-    }
-    
-    void Vehicle::setSpeed(int newSpeed)
-    {
-        if (newSpeed > getMaxSpeed())
-        {
-            m_speed = getMaxSpeed();
-        }
-        else
-        {
-            m_speed = newSpeed;
-        }
-    }
-    void Vehicle::increaseSpeed(int delta)
-    {
-        int newSpeed = m_speed + delta;
-        setSpeed(newSpeed);
-        
-        
-        
-        std::cout << "Increasing speed  to: " << m_speed << std::endl;
-    }
-    
-    void Vehicle::decreaseSpeed(int delta)
-    {
-        int newSpeed = m_speed - delta;
-        
-        if (newSpeed < 0)
-        {
-            m_speed = 0;
-        }
-        else
-        {
-            m_speed = newSpeed;
-        }
-        
-        std::cout << "Decreasing speed to: " << m_speed << std::endl;
-    }
-    
-    void Vehicle::resetPosition()
-    {
-        m_position = 0;
-    }
-    
-    void Vehicle::setLane(Lane* lane)
-    {
-        m_lane = lane;
-    }
-    
-   
-    void Vehicle::update()
-    {
-        std::cout << "Updating vehicle " << m_id << std::endl;
-        m_position += m_speed;
-    }
-    
-    
-
-
-Vehicle::~Vehicle() 
+Vehicle::Vehicle(int id, int initialSpeed)
+  :m_id(id), m_position(), m_speed(initialSpeed), m_maxSpeed(0)
 {
-    std::cout << "Deleting vehicle " << m_id << std::endl;
+   
+}
+
+virtual Vehicle::~Vehicle()
+{
+    
+}
+
+int Vehicle::getSpeed() const
+{
+    return m_speed;
+}
+Position Vehicle::getPosition() const
+{
+    return m_position;
+}
+int Vehicle::getId() const
+{
+    return m_id;
+}
+void Vehicle::increaseSpeed(int delta)
+{
+    int newSpeed = m_speed + delta;
+    
+    if (newSpeed <= m_maxSpeed)
+    {
+        m_speed = newSpeed;
+    }
+    else
+    {
+        m_speed = m_maxSpeed;
+    }
+        
+        
+}
+void Vehicle::decreaseSpeed(int delta)
+{
+    int newSpeed = m_speed - delta;
+    
+    if (newSpeed >= 0)
+    {
+        m_speed = newSpeed;
+    }
+    else
+    {
+        m_speed = 0;
+    }
+}
+
+void Vehicle::update()
+{
+    Position newPos = calculateNewPosition();
+    PositionStatus status = isPositionAvailable(m_position);
+    
+    if ( status == PositionStatus.OK)
+    {
+        m_position = newPos;
+    }
+    else
+    {
+        onPositionNotAvailable(newPos,reason);
+    }
+    
+    
+    
 }
 
 std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle)
 {
-    os << "Id: " << vehicle.m_id << std::endl << "Type: " << vehicle.getTypeDescription() << std::endl <<"Position: " << vehicle.m_position << std::endl << "Speed: " << vehicle.m_speed << std::endl << "Max speed: " << vehicle.getMaxSpeed() << std::endl;
+    os << "Id: " << vehicle.m_id << std::endl << "Position: " << vehicle.m_position << std::endl << "Speed: " << vehicle.m_speed << std::endl;
     return os;
 }
 
+Position Vehicle::calculateNewPosition()
+{
+    return Position(m_position.m_x += m_speed, m_position.m_y);
+}
+void Vehicle::onPositionNotAvailable(const Position& position, const PositionStatus& status)
+{
+    
+}
+
+PositionStatus Vehicle::isPositionAvailable(const Position& position)
+{
+    return PositionStatus.OK;
+}

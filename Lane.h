@@ -11,6 +11,11 @@
 #include <list>
 #include <vector>
 #include "Vehicle.h"
+#include <boost/signals2.hpp>
+
+boost::signals2::signal<void(float, float)> sig;
+
+
 class Lane {
 public:
     explicit Lane(int length);
