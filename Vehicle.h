@@ -9,6 +9,8 @@
 #define	VEHICLE_H
 #include <iostream>
 #include <string>
+#include <boost/signals2/signal.hpp>
+
 
 enum class VehicleType {CAR, TRUCK};
 enum class PositionStatus {OK, ROAD_END, LANE_OCCUPIED, HORIZONTAL_POS_OCCUPIED };
@@ -38,6 +40,9 @@ struct PVData
 class Vehicle {
 public:
     
+    typedef boost::signals2::signal<void (const PVData&)> CheckPositionSignal_t;
+    
+    
     static Vehicle* createVehicle(int id, VehicleType type, int initialSpeed, int initialPosition = 0);
     
     int getSpeed() const;
@@ -46,6 +51,7 @@ public:
     int getTime() const;
     int getId() const;
     void update(int time);
+    boost::signals2::connection addCheckPositionSignal(const CheckPositionSignal_t::slot_type& slot);
     virtual ~Vehicle();
     friend std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle);
     
@@ -59,6 +65,8 @@ protected:
     int m_time;
     int m_maxSpeed;
     PVData m_position; 
+    CheckPositionSignal_t m_checkPositionSignal;
+    
     
 private:
     

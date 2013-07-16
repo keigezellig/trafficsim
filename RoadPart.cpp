@@ -6,6 +6,8 @@
  */
 
 #include "RoadPart.h"
+#include <functional>
+#include <boost/signals2/slot.hpp>
 
 
 
@@ -14,10 +16,25 @@ RoadPart::RoadPart(int numberOfLanes, int laneLength)
 {
     
 }
-RoadPart::RoadPart(const RoadPart& orig)
+/*RoadPart::RoadPart(const RoadPart& orig)
         :m_numberOfLanes(orig.m_numberOfLanes)
 {
    
+}*/
+
+void RoadPart::addVehicle(std::unique_ptr<Vehicle> vehicle)
+{
+    Vehicle* veh = vehicle.get();
+    veh->addCheckPositionSignal(std::bind(&RoadPart::checkPositionSlot, this, std::placeholders::_1));
+    m_vehicles.push_back(std::move(vehicle));
+}
+
+void RoadPart::update(int time)
+{
+    for (std::unique_ptr<Vehicle>& vp : m_vehicles)
+    {
+        vp.get()->update(time);
+    }
 }
 
 
@@ -35,5 +52,10 @@ std::ostream& operator<<(std::ostream& os, const RoadPart& part)
     
     return os;
     
+}
+
+void RoadPart::checkPositionSlot(const PVData& data)
+{
+    std::cout << "Checking position " << data;
 }
 

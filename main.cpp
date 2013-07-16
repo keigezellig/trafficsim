@@ -8,7 +8,7 @@
 #include <cstdlib>
 
 #include "Car.h"
-
+#include "RoadPart.h"
 #include "Truck.h"
 
 
@@ -21,17 +21,23 @@ using namespace std;
 int main(int argc, char** argv) 
 {
     
-    Car v1(1,50000);
-    Car v2(2,45000);
-    Truck v3(3,20000);
-    Truck v4(4,0);
+    RoadPart* r = new RoadPart(4,100000);
+    r->addVehicle(std::unique_ptr<Vehicle> (new Car(1,50000)));
+    r->addVehicle(std::unique_ptr<Vehicle> (new Car(2,45000)));
+    r->addVehicle(std::unique_ptr<Vehicle> (new Truck(3,20000)));
+    r->addVehicle(std::unique_ptr<Vehicle> (new Truck(4,50000)));
+    
+    
+    
+    
+    
     
     int time = 0;
   
     
     while (true)
     {
-        cout << v1 << v2 << v3 << v4;
+        //cout << v1 << v2 << v3 << v4;
         char key = getchar();
         
 
@@ -39,20 +45,20 @@ int main(int argc, char** argv)
             {
                 break;
             }
-       
-        v1.update(time);
-        v2.update(time);
-        v3.update(time);
-        v4.update(time);
+        r->update(time);
         
-        cout << v1 << v2 << v3 << v4;
+       
+        
+        
+        
+        //cout << v1 << v2 << v3 << v4;
         
         
 
             
     }
     
-   
+    delete r;
     return 0;
 }
 

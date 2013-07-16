@@ -9,6 +9,9 @@
 #include "Car.h"
 #include "Truck.h"
 
+
+
+
 Vehicle* Vehicle::createVehicle(int id, VehicleType type, int initialSpeed, int initialPosition)
 {
     switch (type)
@@ -38,7 +41,13 @@ Vehicle::Vehicle(int id, int initialSpeed)
 
 Vehicle::~Vehicle()
 {
-    
+    std::cout << "Destructor vehicle" << std::endl;
+    m_checkPositionSignal.disconnect_all_slots();
+}
+
+boost::signals2::connection Vehicle::addCheckPositionSignal(const CheckPositionSignal_t::slot_type& slot)
+{
+    return m_checkPositionSignal.connect(slot);
 }
 
 int Vehicle::getSpeed() const
@@ -112,5 +121,6 @@ void Vehicle::onPositionNotAvailable(const PVData& position, const PositionStatu
 
 PositionStatus Vehicle::isPositionAvailable(const PVData& position) const
 {
+    m_checkPositionSignal(position);
     return PositionStatus::OK;
 }
