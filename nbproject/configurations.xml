@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Car.h</itemPath>
-      <itemPath>Lane.h</itemPath>
       <itemPath>RoadPart.h</itemPath>
       <itemPath>Truck.h</itemPath>
       <itemPath>Vehicle.h</itemPath>
@@ -18,7 +17,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Car.cpp</itemPath>
-      <itemPath>Lane.cpp</itemPath>
       <itemPath>RoadPart.cpp</itemPath>
       <itemPath>Truck.cpp</itemPath>
       <itemPath>Vehicle.cpp</itemPath>
@@ -56,10 +54,6 @@
       <item path="Car.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Car.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Lane.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Lane.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RoadPart.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -101,10 +95,6 @@
       <item path="Car.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Car.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Lane.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Lane.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RoadPart.cpp" ex="false" tool="1" flavor2="0">
       </item>

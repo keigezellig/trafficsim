@@ -7,34 +7,31 @@
 
 #include "Truck.h"
 #include <iostream>
+#include <algorithm>
 
-    Truck::Truck(int id, int initialSpeed, int initialPosition)
-      :Vehicle(id, initialSpeed, initialPosition)
+    Truck::Truck()
+      :Vehicle()
     {
-        std::cout << "Ctor Truck" << std::endl;
+        m_maxSpeed = 80000;
     }
-    Truck::Truck(const Truck& truck)
-      :Vehicle(truck)
-   {
-        std::cout << "Copy ctor Truck" << std::endl;
-   }
-   
-    Truck* Truck::clone() const
+    Truck::Truck(int id, int initialSpeed)
+      :Vehicle(id,initialSpeed)
     {
-        std::cout << "Cloning Truck" << std::endl;
-        return new Truck(*this);
-    }
-    
-    int Truck::getMaxSpeed() const
-    {
-        return 80;
-    }
-    
-    std::string Truck::getTypeDescription() const
-    {
-        return "Truck";
+        m_maxSpeed = 80000;
     }
     Truck::~Truck()
+    {
+        
+    }
+    
+    PVData Truck::calculateNewPosition() const
+    {
+        int a = 1000; 
+        int newSpeed = std::min(m_position.m_speed + a, m_maxSpeed);
+        int newX = m_position.m_x + newSpeed;  
+        return PVData(newX, m_position.m_y, newSpeed);
+    }
+    void Truck::onPositionNotAvailable(const PVData& position, const PositionStatus& status)
     {
         
     }

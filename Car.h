@@ -11,14 +11,9 @@
 #include "Vehicle.h"
 class Car  : public Vehicle {
 public:
-    Car(int id, int initialSpeed, int initialPosition = 0);
-    Car* clone() const;
-    virtual int getMaxSpeed() const;
-    virtual std::string getTypeDescription() const;
+    Car();
+    Car(int id, int initialSpeed);
     virtual ~Car();
-protected:
-   
-    Car(const Car& car);
 
 };
 

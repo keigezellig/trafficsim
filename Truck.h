@@ -11,14 +11,14 @@
 #include "Vehicle.h"
 class Truck  : public Vehicle {
 public:
-    Truck(int id, int initialSpeed, int initialPosition = 0);
-    virtual int getMaxSpeed() const;
-    virtual std::string getTypeDescription() const;
-    virtual Truck* clone() const;
+    Truck();
+    Truck(int id, int initialSpeed);
+    
     virtual ~Truck();
 protected:
+    virtual PVData calculateNewPosition() const;
+    virtual void onPositionNotAvailable(const PVData& position, const PositionStatus& status);
     
-    Truck(const Truck& truck);
 
 };
 

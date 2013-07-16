@@ -11,21 +11,16 @@
 #include <vector>
 #include <iostream>
 #include "Vehicle.h"
-#include "Lane.h"
+
 
 class RoadPart {
 public:
     explicit RoadPart(int numberOfLanes, int laneLength);
     RoadPart(const RoadPart& orig);
-    int getNumberOfLanes() const;
-    void addVehicle(int id, VehicleType type, int initialSpeed, int initialPosition, int laneIndex);
-    void update();
-    
     virtual ~RoadPart();
     
     friend std::ostream& operator<<(std::ostream& os, const RoadPart& part);
 private:
-    std::vector<Lane*> m_lanes;
     int m_numberOfLanes;
 
 };

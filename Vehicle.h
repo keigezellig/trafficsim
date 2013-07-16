@@ -11,21 +11,23 @@
 #include <string>
 
 enum class VehicleType {CAR, TRUCK};
-enum class PositionStatus {OK, ROAD_END, POSITION_OCCUPIED};
+enum class PositionStatus {OK, ROAD_END, LANE_OCCUPIED, HORIZONTAL_POS_OCCUPIED };
 
 
-struct Position
+struct PVData
 {
     int m_x;       //Horizontal position in meters
     int m_y;       //Lane number 
+    int m_speed;     //Speed in meters/time unit
     
-    Position(int x, int y)
+    PVData(int x, int y, int speed)
     {
         m_x = x;
         m_y = y;
+        m_speed = speed;
     }
     
-   std::ostream& operator<<(std::ostream& os, const Position& pos)
+ friend std::ostream& operator<<(std::ostream& os, const PVData& pos)
 {
     os << "(" << pos.m_x << "," << pos.m_y << ")" << std::endl;
     return os;
@@ -39,26 +41,28 @@ public:
     static Vehicle* createVehicle(int id, VehicleType type, int initialSpeed, int initialPosition = 0);
     
     int getSpeed() const;
-    int getPosition() const;
+    int getHorizontalPosition() const;
+    int getLanePosition() const;
+    int getTime() const;
     int getId() const;
-    void increaseSpeed(int delta);
-    void decreaseSpeed(int delta);
-    void update();
+    void update(int time);
     virtual ~Vehicle();
     friend std::ostream& operator<<(std::ostream& os, const Vehicle& vehicle);
     
 protected:
     Vehicle();
     Vehicle(int id, int initialSpeed);
-    virtual Position calculateNewPosition() const;
-    virtual void onPositionNotAvailable(const Position& position, const PositionStatus& status);
+    virtual PVData calculateNewPosition() const;
+    virtual void onPositionNotAvailable(const PVData& position, const PositionStatus& status);
+    void setSpeed(int newSpeed);
+    int m_id;
+    int m_time;
+    int m_maxSpeed;
+    PVData m_position; 
     
 private:
-    int m_id;
-    int m_speed;
-    int m_maxSpeed;
-    Position m_position;
-    PositionStatus isPositionAvailable(const Position& position) const;
+    
+    PositionStatus isPositionAvailable(const PVData& position) const;
     
     
     

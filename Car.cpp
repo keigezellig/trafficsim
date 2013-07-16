@@ -9,34 +9,20 @@
 
 
 
-    Car::Car(int id, int initialSpeed, int initialPosition)
-      :Vehicle(id, initialSpeed, initialPosition)
+    Car::Car()
+      :Vehicle()
     {
-        std::cout << "Ctor Car" << std::endl;
+        m_maxSpeed = 130000;
     }
-    
-   Car::Car(const Car& car)
-      :Vehicle(car)
-   {
-       std::cout << "Copy Ctor Car" << std::endl;
-   }
-    
-    Car* Car::clone() const
+    Car::Car(int id, int initialSpeed)
+      :Vehicle(id,initialSpeed)
     {
-        std::cout << "Cloning Car" << std::endl;
-        return new Car(*this);
-    }
-    int Car::getMaxSpeed() const
-    {
-        return 130;
-    }
-    
-    std::string Car::getTypeDescription() const
-    {
-        return "Car";
+     
+        m_maxSpeed = 130000;
     }
     Car::~Car()
     {
         
     }
+
 
