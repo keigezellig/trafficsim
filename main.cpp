@@ -7,9 +7,9 @@
 
 #include <cstdlib>
 
-#include "Car.h"
+#include "Vehicle.h"
 #include "RoadPart.h"
-#include "Truck.h"
+
 
 
 
@@ -22,10 +22,9 @@ int main(int argc, char** argv)
 {
     
     RoadPart* r = new RoadPart(4,100000);
-    r->addVehicle(std::unique_ptr<Vehicle> (new Car(1,50000)));
-    r->addVehicle(std::unique_ptr<Vehicle> (new Car(2,45000)));
-    r->addVehicle(std::unique_ptr<Vehicle> (new Truck(3,20000)));
-    r->addVehicle(std::unique_ptr<Vehicle> (new Truck(4,50000)));
+    r->addVehicle(std::unique_ptr<Vehicle>(Vehicle::createVehicle(1,VehicleType::CAR,50000)));
+    r->addVehicle(std::unique_ptr<Vehicle>(Vehicle::createVehicle(2,VehicleType::TRUCK,50000)));
+    r->addVehicle(std::unique_ptr<Vehicle>(Vehicle::createVehicle(4,VehicleType::CAR,50000)));
     
     
     
